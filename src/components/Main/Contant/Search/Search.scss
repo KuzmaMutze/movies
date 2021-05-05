@@ -1,0 +1,36 @@
+.search{
+    position: relative;
+    color: rgb(122, 140, 153);
+    display: flex;
+    align-items: center;
+    svg{
+        position: absolute;
+        // top: 0;
+        left: 15px;
+    }
+    &__input{
+        background: #fff;
+        font-size: 16px;
+        padding: 0.75rem;
+        padding-left: 40px;
+        border-radius: 0.25rem;
+        margin: 0;
+        border: 0;
+        outline: none;
+        letter-spacing: 0.01em;
+        line-height: 1.5rem;
+        width: 100%;
+    }
+
+}
+
+.search:focus-within:before{
+    content: '';
+    position: absolute;
+    left: -2px;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.40rem;
+    border: 2px solid rgb(255, 159, 28);
+}
+
