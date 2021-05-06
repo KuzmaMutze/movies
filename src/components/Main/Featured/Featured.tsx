@@ -4,8 +4,15 @@ import { MovieFeaturedType } from "../../../api/types/types";
 import { getFeaturedMovies } from "../../../redux/featured-reducer";
 import { getFeaturedMoviesSelector } from "../../../redux/selectors/featured-selectors";
 import "./Featured.scss"
-
+// @ts-ignore
+import LazyImage from "react-lazy-progressive-image";
+import styled from "styled-components";
 type PropsType = {}
+
+const Image = styled.img`
+    filter: blur(${props => (props.loading ? 15 : 0)}px);
+`;
+
 export const Featured: React.FC<PropsType> = (props) => {
 
     function splitDate(date: string){
@@ -50,7 +57,14 @@ export const Featured: React.FC<PropsType> = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt="poster-movie's"/>
+                        <div className="movie__wrapper-img" >
+                            <LazyImage
+                                placeholder={`https://image.tmdb.org/t/p/w45/${movie.poster_path}`}
+                                src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                            >
+                                {(src: any, loading: any) => <Image src={src} loading={loading} alt="poster-movie's"/>}
+                            </LazyImage>
+                        </div>
                     </div>)}
                 </>)} 
             </div>
