@@ -10,11 +10,11 @@ let data = (param: any) => {
 }
 
 export const instance = axios.create({
-    baseURL: `https://api.themoviedb.org/3/discover/`
+    baseURL: `https://api.themoviedb.org/3/`
 }) 
 
  export const API = {
     featured () {
-        return data(instance.get<ResponsePageMoviesFeaturedType>(`movie?api_key=${ApiKey}&page=1`))
+        return data(instance.get<ResponsePageMoviesFeaturedType>(`discover/movie?api_key=${ApiKey}`))
     } 
 }

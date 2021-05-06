@@ -1,10 +1,12 @@
 import { BaseThunkType, InferActionTypes } from './store';
 import { Dispatch } from 'redux';
 import { API } from '../api/api';
+import { MovieFeaturedType } from '../api/types/types';
 
 let initialState = {
-    featuredPages: [],
+    featuredPages: [] as Array<MovieFeaturedType>,
 }
+
 export type InitialStateType = typeof initialState
 type ActionsType = InferActionTypes<typeof actions>
 type DispatchType = Dispatch<ActionsType>
@@ -15,7 +17,10 @@ const featuredReducer = (state = initialState, action: ActionsType): InitialStat
     if (action.type === "SET_FEATURED_MOVIES") {
         return {
             ...state,
-            // featuredPages: [...state.featuredPages, action.payload]
+            featuredPages: [
+                ...state.featuredPages,
+                action.payload.results
+            ]
         }
     }
     return state;
@@ -26,13 +31,9 @@ export let actions = {
 }
 
 // thunk
-export let getFeaturedMovies = () => async (dispatch: DispatchType) => {
+export let getFeaturedMovies = (): ThunkType => async (dispatch) => {
     let data = await API.featured()
-    console.log(data);
-    
-    actions.setFeaturedMovies(data)
-    console.log(data);
-    
+    dispatch(actions.setFeaturedMovies(data))    
 }
 
 export default featuredReducer;
