@@ -1,0 +1,148 @@
+.movie-wrapper{
+    display: flex;
+    justify-content: space-between;
+    &__info{
+        position: relative;
+        width: 564px;
+        padding: 10px;
+        .btn-back{
+            position: relative;
+            top: 0;
+            left: -10px;
+            cursor: pointer;
+            background: none;
+            color: #7A8B96;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 5px;
+            padding-left: 0;
+            padding-right: 10px;
+        }
+        .btn-back:focus{
+            color: #fff;
+            border: 2px solid rgb(255, 159, 28);
+        }
+        .btn-back:hover{
+            color: #fff;
+        }
+        .subdesc{
+            margin: 1.5rem 0px;
+            display: flex;
+            .data-time{
+                span{
+                    display: inline-block;
+                    padding-top: 8px;
+                    color: #7A8B96;
+                    font-size: 1rem;
+                    line-height: 1.5rem;
+                    letter-spacing: 0.01em;
+                }
+                span:after{
+                    text-align: center;
+                    content: " • ";
+                    padding-right: 7px;
+                }
+            }
+            .adult{
+                height: 40px;
+                border-radius: 5px;
+                span{
+                    display: flex;
+                    align-items: center;
+                    font-weight: 500;
+                    padding: 11px 10px;
+                }
+                
+                background: rgb(122, 140, 153);
+            }
+        }
+        .title{
+            font-size: 5rem;
+            line-height: 5.5rem;
+            letter-spacing: 0.01em;
+            font-weight: 600;
+            color: #fff;
+        }
+        .btns-box{
+            width: 330px;
+            margin: 1rem 0 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btns{
+            height: 40px;
+            margin: 1rem 0;
+            display: inline-flex;
+            text-decoration: none;
+            border-radius: 0.25rem;
+            box-shadow: rgb(53, 63, 76) 0px 0px 0px 1px inset;
+            overflow: hidden;
+            .IMB{
+                display: inline-flex;
+                color: #fff;
+                text-decoration: none;
+            }
+            .left{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgb(255, 159, 28);
+                padding: 0.5rem;
+            }
+            .IMB:focus{
+                .right{
+                    border: 2px solid  rgb(255, 159, 28);
+                    border-left: none;
+                }
+            }
+            .right{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.5rem;
+
+            }
+        }
+        .like{
+            background: none;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            border-radius: 0.25rem;
+            box-shadow: rgb(53, 63, 76) 0px 0px 0px 1px inset;
+            color: rgb(122, 140, 153);
+            overflow: hidden;
+            cursor: pointer;
+            svg{
+                margin: 0.7rem 0.5rem;
+            }
+            span{
+                font-size: 1rem;
+                line-height: 1.5rem;
+                letter-spacing: 0.01em;
+                margin-right: 0.5rem;
+            }
+        }
+        .like:hover{
+            color: #fff;
+            background: rgb(255, 64, 64);
+            box-shadow: rgb(255, 64, 64) 0px 0px 0px 1px inset;
+        }
+        .desc{
+            &__title{
+                margin: 0.5rem 0px;
+                color: rgb(122, 140, 153);
+                font-weight: 500;
+            }
+            &__info{
+                font-size: 1rem;
+                line-height: 1.5rem;
+                letter-spacing: 0.01em;
+                color: #fff;
+            }
+        }
+    }
+}

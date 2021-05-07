@@ -13,7 +13,6 @@ export const Featured: React.FC<PropsType> = (props) => {
 
     let dispatch = useDispatch()
     let movies = useSelector(getFeaturedMoviesSelector)
-    console.log(movies);
     let isFetching = useSelector(getIsFetching)
 
     

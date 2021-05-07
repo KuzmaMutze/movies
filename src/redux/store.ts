@@ -3,10 +3,12 @@ import {applyMiddleware, combineReducers, createStore, compose, Action} from "re
 import aapReducer from "./app-reducer";
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import featuredReducer from "./featured-reducer";
+import movieReducer from "./movie-reducer";
 
 let rootReducers = combineReducers({
     app: aapReducer,
-    featured: featuredReducer
+    featured: featuredReducer,
+    movie: movieReducer
 });
 
 type RootReducerType = typeof rootReducers; // (globalstate: AppStateType) => AppStateType

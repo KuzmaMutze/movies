@@ -10,7 +10,6 @@ let initialState = {
 
 export type InitialStateType = typeof initialState
 type ActionsType = InferActionTypes<typeof actions>
-type DispatchType = Dispatch<ActionsType>
 type ThunkType = BaseThunkType<ActionsType>
 
 

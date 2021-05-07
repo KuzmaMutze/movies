@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { ResponsePageMoviesFeaturedType } from "./types/types";
+import { ResponseMovieId, ResponsePageMoviesFeaturedType } from "./types/types";
 
 const ApiKey = "3e310cd4e4a6a86d521600dd60888991"
 
@@ -16,5 +16,8 @@ export const instance = axios.create({
  export const API = {
     featuredPage (page: number) {
         return data(instance.get<ResponsePageMoviesFeaturedType>(`discover/movie?api_key=${ApiKey}&page=${page}`))
-    } 
+    },
+    getMovieId (id: number) {
+        return data(instance.get<ResponseMovieId>(`https://api.themoviedb.org/3/movie/${id}?api_key=${ApiKey}`))
+    }
 }

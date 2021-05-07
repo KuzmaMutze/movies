@@ -4,6 +4,7 @@ import LazyImage from "react-lazy-progressive-image";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { MovieFeaturedType } from "../../../../api/types/types";
+import { splitDate } from "../../../../helpers/helpers";
 
 type PropsType = {
     el: any
@@ -16,16 +17,12 @@ const Image = styled.img`
 
 export const Card: React.FC<PropsType> = (props) => {
 
-    function splitDate(date: string){
-        let newDate = new Date(date)
-        return newDate.getFullYear()
-    }
-    console.log(props.el);
+    
     
     return (
     <>
         {props.el.results.map((movie : MovieFeaturedType) => <div className="movie">
-                        <NavLink to="123" className="movie__hover">
+                        <NavLink to={`/movies/${movie.id}`} className="movie__hover">
                             <div className="hover__bg">
 
                             </div>
