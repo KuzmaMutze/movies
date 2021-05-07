@@ -14,7 +14,7 @@ export const instance = axios.create({
 }) 
 
  export const API = {
-    featured () {
-        return data(instance.get<ResponsePageMoviesFeaturedType>(`discover/movie?api_key=${ApiKey}`))
+    featuredPage (page: number) {
+        return data(instance.get<ResponsePageMoviesFeaturedType>(`discover/movie?api_key=${ApiKey}&page=${page}`))
     } 
 }

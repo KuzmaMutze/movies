@@ -1,10 +1,11 @@
 import { BaseThunkType, InferActionTypes } from './store';
 import { Dispatch } from 'redux';
 import { API } from '../api/api';
-import { MovieFeaturedType } from '../api/types/types';
+import { ResponsePageMoviesFeaturedType } from '../api/types/types';
 
 let initialState = {
-    featuredPages: [] as Array<MovieFeaturedType>,
+    featuredPages: [] as Array<ResponsePageMoviesFeaturedType>,
+    isFetching: false
 }
 
 export type InitialStateType = typeof initialState
@@ -19,21 +20,44 @@ const featuredReducer = (state = initialState, action: ActionsType): InitialStat
             ...state,
             featuredPages: [
                 ...state.featuredPages,
-                action.payload.results
+                action.payload
             ]
+        }
+    } else if (action.type === "SET_FEATURED_MOVIES_INIT") {
+        return {
+            ...state,
+            featuredPages: [
+                action.payload
+            ]
+        }
+    }else if (action.type === "SET_IS_FETCHING") {
+        return {
+            ...state,
+            isFetching: action.boolean
         }
     }
     return state;
 }
 
 export let actions = {
-    setFeaturedMovies: (payload: any) => ({type: "SET_FEATURED_MOVIES", payload} as const) 
+    setFeaturedMoviesInitAC: (payload: ResponsePageMoviesFeaturedType) => ({type: "SET_FEATURED_MOVIES_INIT", payload} as const),
+    setFeaturedMoviesAC: (payload: ResponsePageMoviesFeaturedType) => ({type: "SET_FEATURED_MOVIES", payload} as const),
+    setIsFetchingAC: (boolean: boolean) => ({type: "SET_IS_FETCHING", boolean} as const),
 }
 
 // thunk
-export let getFeaturedMovies = (): ThunkType => async (dispatch) => {
-    let data = await API.featured()
-    dispatch(actions.setFeaturedMovies(data))    
+export let getFeaturedMovies = (page: number): ThunkType => async (dispatch) => {
+    dispatch(actions.setIsFetchingAC(true))
+    let data = await API.featuredPage(page)
+    dispatch(actions.setFeaturedMoviesAC(data))  
+    dispatch(actions.setIsFetchingAC(false))  
+}
+
+export let getFeaturedMoviesInit = (page: number) : ThunkType => async (dispatch) => {
+    dispatch(actions.setIsFetchingAC(true))
+    let data = await API.featuredPage(page)
+    dispatch(actions.setFeaturedMoviesInitAC(data))
+    dispatch(actions.setIsFetchingAC(false))
 }
 
 export default featuredReducer;
