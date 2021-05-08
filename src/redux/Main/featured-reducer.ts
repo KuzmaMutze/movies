@@ -1,7 +1,7 @@
-import { BaseThunkType, InferActionTypes } from './store';
+import { BaseThunkType, InferActionTypes } from '../store';
 import { Dispatch } from 'redux';
-import { API } from '../api/api';
-import { ResponsePageMoviesFeaturedType } from '../api/types/types';
+import { API } from '../../api/api';
+import { ResponsePageMoviesFeaturedType } from '../../api/types/types';
 
 let initialState = {
     featuredPages: [] as Array<ResponsePageMoviesFeaturedType>,
@@ -48,14 +48,14 @@ export let actions = {
 export let getFeaturedMovies = (page: number): ThunkType => async (dispatch) => {
     dispatch(actions.setIsFetchingAC(true))
     let data = await API.featuredPage(page)
-    dispatch(actions.setFeaturedMoviesAC(data))  
+    dispatch(actions.setFeaturedMoviesAC(data.results))  
     dispatch(actions.setIsFetchingAC(false))  
 }
 
 export let getFeaturedMoviesInit = (page: number) : ThunkType => async (dispatch) => {
     dispatch(actions.setIsFetchingAC(true))
     let data = await API.featuredPage(page)
-    dispatch(actions.setFeaturedMoviesInitAC(data))
+    dispatch(actions.setFeaturedMoviesInitAC(data.results))
     dispatch(actions.setIsFetchingAC(false))
 }
 

@@ -1,7 +1,7 @@
-import { BaseThunkType, InferActionTypes } from './store';
+import { BaseThunkType, InferActionTypes } from '../store';
 import { Dispatch } from 'redux';
-import { API } from '../api/api';
-import { ResponseMovieId, ResponsePageMoviesFeaturedType } from '../api/types/types';
+import { API } from '../../api/api';
+import { ResponseMovieId } from '../../api/types/types';
 
 let initialState = {
     movie: null as ResponseMovieId | null

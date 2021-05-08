@@ -1,14 +1,19 @@
 import React from "react"
 import { Search } from "./Search/Search";
 import "./Contant.scss"
+import { useEffect } from "react";
 
 type PropsType = {}
 export const Contant: React.FC<PropsType> = (props) => {
+
+  useEffect(() => {
+    document.title = "Cinema 🍿"
+  }, [])
+
   return (
     <>
       <Search></Search> 
       <div className="contant">
-        
         <div className="contant__smile">☝️</div>
         <div className="contant__title">
           {"Search for "} 

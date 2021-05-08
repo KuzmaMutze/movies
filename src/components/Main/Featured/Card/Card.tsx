@@ -1,13 +1,17 @@
 import React from "react"
 // @ts-ignore
 import LazyImage from "react-lazy-progressive-image";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { MovieFeaturedType } from "../../../../api/types/types";
 import { splitDate } from "../../../../helpers/helpers";
+import { setIdMovieIdFavorite } from "../../../../redux/Main/favorites-reducer";
+import './Card.scss'
 
 type PropsType = {
     el: any
+    idsFavouriteMovie?: Array<number>
 }
 
 const Image = styled.img`
@@ -15,35 +19,42 @@ const Image = styled.img`
 `;
 
 
+
 export const Card: React.FC<PropsType> = (props) => {
 
-    
-    
+    let dispatch = useDispatch()
+
+    let addIdToFavorites = (id: number) => {
+        dispatch(setIdMovieIdFavorite(id))
+    }
+
     return (
     <>
-        {props.el.results.map((movie : MovieFeaturedType) => <div className="movie">
-                        <NavLink to={`/movies/${movie.id}`} className="movie__hover">
-                            <div className="hover__bg">
+        {props.el && props.el.map((movie : MovieFeaturedType) => <div className="movie">
+                        <div className="movie__hover">
+                            <div className="icon-like">
+                                <button onClick={() => addIdToFavorites(movie.id)} className={`${movie.id && "favorite"} ${"btn-like"}`}>
+                                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path stroke-width="2" stroke="currentColor" fill="none" d="M12 5.74C24.32-3.88 26.31 14.49 12 20-2.31 15.57-.32-3.88 12 5.74z"></path></svg>
+                                </button>
+                            </div>
+                            <NavLink to={`/movies/${movie.id}`} >
+                                <div className="hover__bg">
 
-                            </div>
-                            <div className="hover__box-info">
-                                <div className="icon-like">
-                                    <button className="btn-like">
-                                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path stroke-width="2" stroke="currentColor" fill="none" d="M12 5.74C24.32-3.88 26.31 14.49 12 20-2.31 15.57-.32-3.88 12 5.74z"></path></svg>
-                                    </button>
                                 </div>
-                                <div className="title">
-                                    <h3>
-                                        {movie.title}
-                                    </h3>
+                                <div className="hover__box-info">
+                                    <div className="title">
+                                        <h3>
+                                            {movie.title}
+                                        </h3>
+                                    </div>
+                                    <div className="year">
+                                        <span>
+                                            {splitDate(movie.release_date)}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div className="year">
-                                    <span>
-                                        {splitDate(movie.release_date)}
-                                    </span>
-                                </div>
-                            </div>
-                        </NavLink>
+                            </NavLink>
+                        </div>
                         <div className="movie__wrapper-img" >
                             <LazyImage
                                 placeholder={`https://image.tmdb.org/t/p/w45/${movie.poster_path}`}

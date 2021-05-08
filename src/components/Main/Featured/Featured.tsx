@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { getFeaturedMovies, getFeaturedMoviesInit } from "../../../redux/featured-reducer";
+import { getFeaturedMovies, getFeaturedMoviesInit } from "../../../redux/Main/featured-reducer";
 import { getFeaturedMoviesSelector, getIsFetching } from "../../../redux/selectors/featured-selectors";
 import { Card } from "./Card/Card";
 import "./Featured.scss"
@@ -17,6 +17,7 @@ export const Featured: React.FC<PropsType> = (props) => {
 
     
     useEffect(() => {
+        document.title = "Featured"
         dispatch(getFeaturedMoviesInit(1))
     }, [])
 
@@ -37,4 +38,3 @@ export const Featured: React.FC<PropsType> = (props) => {
         </div>
   )
 };
-

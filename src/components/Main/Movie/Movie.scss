@@ -1,6 +1,7 @@
 .movie-wrapper{
     display: flex;
     justify-content: space-between;
+    padding-bottom: 120px;
     &__info{
         position: relative;
         width: 564px;
@@ -143,6 +144,13 @@
                 letter-spacing: 0.01em;
                 color: #fff;
             }
+        }
+    }
+    &__poster{
+        margin-top: 20px;
+        margin-right: 50px;
+        img{
+            border-radius: 5px;
         }
     }
 }

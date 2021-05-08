@@ -8,12 +8,17 @@ import {
 } from "react-router-dom";
 import { Featured } from "./Featured/Featured";
 import { Movie } from "./Movie/Movie";
+import { Favorites } from "./Favorites/Favorites";
 
 export const Main: React.FC = (props) => {
+
+
+
   return (
     <main>
         <Switch>
           <Route exact path="/" component={() => <Redirect to="/home"></Redirect>}/>
+          <Route exact path="/favorites" component={() => <Favorites></Favorites>}/>
           <Route exact path="/home" component={() => <Contant></Contant>}/>
           <Route path="/movies/:id" component={ () => <Movie></Movie> }/>
           <Route exact path="/featured" component={ () => <Featured></Featured> }/>
