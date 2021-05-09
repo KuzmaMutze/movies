@@ -16,7 +16,10 @@ type ThunkType = BaseThunkType<ActionsType>
 const favoritesReducer = (state = initialState, action: ActionsType): InitialStateType => {
     if (action.type === "SET_MOVIE_ID") {
         if (state.favoritesMovie.some(id => id === action.id)) {
-            alert("Такой город уже добавлен")
+            return{
+                ...state,
+                favoritesMovie: state.favoritesMovie.filter(id => id != action.id)
+            }
         } else {
             return{
                 ...state,
