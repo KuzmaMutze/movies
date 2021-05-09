@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { setMovieIdFavorite } from "../../../redux/Main/favorites-reducer";
+import { removeMovie, setMovieIdFavorite } from "../../../redux/Main/favorites-reducer";
 import { getFavouriteMovie, getFavouriteMovieId } from "../../../redux/selectors/favourite-selectors";
 import { Card } from "../Featured/Card/Card";
 import "./../Featured/Featured.scss"
@@ -16,8 +16,10 @@ export const Favorites: React.FC<PropsType> = (props) => {
     let favouriteMovies = useSelector(getFavouriteMovie)
 
     useEffect(() => {
-        document.title = "Favorites"
-        dispatch(setMovieIdFavorite(460465))
+        favouriteIds.forEach(id => dispatch(setMovieIdFavorite(id)))
+        return () => {
+            dispatch(removeMovie())
+        }
     }, [])
 
     return (
