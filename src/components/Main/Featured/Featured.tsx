@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { getFeaturedMovies, getFeaturedMoviesInit } from "../../../redux/Main/featured-reducer";
+import { getFavouriteMovieId } from "../../../redux/selectors/favourite-selectors";
 import { getFeaturedMoviesSelector, getIsFetching } from "../../../redux/selectors/featured-selectors";
 import { Card } from "./Card/Card";
 import "./Featured.scss"
@@ -14,7 +15,7 @@ export const Featured: React.FC<PropsType> = (props) => {
     let dispatch = useDispatch()
     let movies = useSelector(getFeaturedMoviesSelector)
     let isFetching = useSelector(getIsFetching)
-
+    let favouriteIds = useSelector(getFavouriteMovieId)
     
     useEffect(() => {
         document.title = "Featured"
@@ -29,8 +30,8 @@ export const Featured: React.FC<PropsType> = (props) => {
     return (
         <div className="featured">
             <h2 className="featured__title">Featured movies</h2>
-            <div  className="featured__movies">
-                {movies.map((el : any) => <Card el={el}/>)} 
+            <div className="featured__movies">
+                {movies.map((el : any) => <Card idsFavouriteMovie={favouriteIds} el={el}/>)} 
                 <button disabled={isFetching} onClick={() => getPage()} className="movie more" >
                     <span>Load More</span>
                 </button>

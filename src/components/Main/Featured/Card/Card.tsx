@@ -11,7 +11,7 @@ import './Card.scss'
 
 type PropsType = {
     el: any
-    idsFavouriteMovie?: Array<number>
+    idsFavouriteMovie: Array<number>
 }
 
 const Image = styled.img`
@@ -33,8 +33,9 @@ export const Card: React.FC<PropsType> = (props) => {
         {props.el && props.el.map((movie : MovieFeaturedType) => <div className="movie">
                         <div className="movie__hover">
                             <div className="icon-like">
-                                <button onClick={() => addIdToFavorites(movie.id)} className={`${movie.id && "favorite"} ${"btn-like"}`}>
-                                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path stroke-width="2" stroke="currentColor" fill="none" d="M12 5.74C24.32-3.88 26.31 14.49 12 20-2.31 15.57-.32-3.88 12 5.74z"></path></svg>
+                                <button onClick={() => addIdToFavorites(movie.id)} className={`${props.idsFavouriteMovie.some(id => id === movie.id) && "favorite"} ${"btn-like"}`}>
+                                    <svg className="withoutlike" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path stroke-width="2" stroke="currentColor" fill="none" d="M12 5.74C24.32-3.88 26.31 14.49 12 20-2.31 15.57-.32-3.88 12 5.74z"></path></svg>
+                                    <svg className="like" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path stroke-width="2" stroke="currentColor" fill="currentColor" d="M12 5.74C24.32-3.88 26.31 14.49 12 20-2.31 15.57-.32-3.88 12 5.74z"></path></svg>
                                 </button>
                             </div>
                             <NavLink to={`/movies/${movie.id}`} >

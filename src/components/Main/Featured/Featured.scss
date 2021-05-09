@@ -17,6 +17,7 @@
             width: 175px;
             border-radius: 5px;
             overflow: hidden;
+            
             &__hover{
                 opacity: 0;
                 position: absolute;
@@ -46,6 +47,9 @@
                         background: none;
                         border: none;
                         transition: all 0.2s ease 0s;
+                        .like{
+                            display: none;
+                        }
                     }
                     .btn-like:hover{
                         color: #DA4E4E;
@@ -131,5 +135,15 @@
         .more:hover{
             color: #7D8B96;
         }
+    }
+}
+
+.favorite{
+    color: #DA4E4E!important;
+    .withoutlike{
+        display: none!important;
+    }
+    .like{
+        display: block!important;
     }
 }
