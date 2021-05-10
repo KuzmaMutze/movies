@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { ResponseMovieId, ResponsePageMoviesFeaturedType } from "./types/types";
+import { MultiResponsePage, ResponseMovieId, ResponsePageMoviesFeaturedType } from "./types/types";
 
 const ApiKey = "3e310cd4e4a6a86d521600dd60888991"
 
@@ -19,5 +19,11 @@ export const instance = axios.create({
     },
     getMovieId (id: number) {
         return data(instance.get<ResponseMovieId>(`https://api.themoviedb.org/3/movie/${id}?api_key=${ApiKey}`))
+    },
+    getMulti(search: string, page = 1) {
+        return data(instance.get<MultiResponsePage>(`https://api.themoviedb.org/3/search/multi?api_key=${ApiKey}&query=${search}&page=${page}`))
+    },
+    getMovies(search: string, page = 1) {
+        return data(instance.get<ResponsePageMoviesFeaturedType>(`https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&query=${search}&page=${page}`))
     }
 }

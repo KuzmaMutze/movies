@@ -5,12 +5,14 @@ import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import featuredReducer from "./Main/featured-reducer";
 import movieReducer from "./Main/movie-reducer";
 import favoritesReducer from "./Main/favorites-reducer";
+import contantReducer from "./Main/contant-reducer";
 
 let rootReducers = combineReducers({
     app: aapReducer,
     featured: featuredReducer,
     movie: movieReducer,
-    favorites: favoritesReducer
+    favorites: favoritesReducer,
+    contant: contantReducer
 });
 
 type RootReducerType = typeof rootReducers; // (globalstate: AppStateType) => AppStateType

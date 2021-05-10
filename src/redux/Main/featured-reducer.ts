@@ -1,5 +1,4 @@
 import { BaseThunkType, InferActionTypes } from '../store';
-import { Dispatch } from 'redux';
 import { API } from '../../api/api';
 import { ResponsePageMoviesFeaturedType } from '../../api/types/types';
 

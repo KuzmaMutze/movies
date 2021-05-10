@@ -69,3 +69,40 @@ export type ResponseMovieId = {
     vote_average: number
     vote_count: number
 }
+
+// Multi request
+
+export type TVType = {
+    backdrop_path: string
+    genre_ids: Array<number>,
+    id: number,
+    media_type: string,
+    name: string,
+    origin_country: Array<string>,
+    original_language: string,
+    original_name: string,
+    overview: string
+    popularity: number
+    poster_path: string
+    vote_average: number
+    vote_count: number
+}
+
+export type PersoneType = {
+    adult: boolean
+    gender: number
+    id: number
+    known_for: Array<MovieFeaturedType>,
+    known_for_department: string
+    media_type: string
+    name: string
+    popularity: number
+    profile_path: null
+}
+
+export type MultiResponsePage = {
+    page: number
+    results: Array<MovieFeaturedType | TVType | PersoneType>
+    total_pages: number
+    total_results: number
+}
