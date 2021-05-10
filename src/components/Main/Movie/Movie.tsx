@@ -2,7 +2,9 @@ import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { splitDate } from "../../../helpers/helpers";
+import { setIdMovieIdFavorite } from "../../../redux/Main/favorites-reducer";
 import { getMovieId } from "../../../redux/Main/movie-reducer";
+import { getFavouriteMovieId } from "../../../redux/selectors/favourite-selectors";
 import { getMovieSelector } from "../../../redux/selectors/movie-selectors";
 import './Movie.scss'
 
@@ -16,9 +18,17 @@ export const Movie: React.FC = (props) => {
     let {id} = useParams<ParamType>();    
     
     let movie = useSelector(getMovieSelector)
+    let favouriteIds = useSelector(getFavouriteMovieId)
+
+    let ids = favouriteIds.filter(el => el == Number(id))
+    
 
     const refresh = () => {
         dispatch(getMovieId(Number(id)))
+    }
+
+    let addIdToFavorites = (id: number) => {
+        dispatch(setIdMovieIdFavorite(id))
     }
 
     useEffect(() => {
@@ -58,9 +68,11 @@ export const Movie: React.FC = (props) => {
                                 <div className="right">{movie.vote_average}/10</div>
                             </a>
                         </div>
-                        <button className="like">
-                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path stroke-width="2.5" stroke="currentColor" fill="none" d="M12 5.74C24.32-3.88 26.31 14.49 12 20-2.31 15.57-.32-3.88 12 5.74z"></path></svg>
-                            <span>Add tp favourites</span>
+                        <button onClick={() => addIdToFavorites(Number(id))} className={`${ids.some(id => id == id) && "add-favorite"} ${"like"}`} >
+                            <svg className="add" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path stroke-width="2.5" stroke="currentColor" fill="currentColor" d="M12 5.74C24.32-3.88 26.31 14.49 12 20-2.31 15.57-.32-3.88 12 5.74z"></path></svg>
+                            <svg className="added" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path stroke-width="2.5" stroke="currentColor" fill="none" d="M12 5.74C24.32-3.88 26.31 14.49 12 20-2.31 15.57-.32-3.88 12 5.74z"></path></svg>
+                            <span className="added">Add to favourites</span>
+                            <span className="add">Added</span>
                         </button>
                     </div>
                     <div className="desc">

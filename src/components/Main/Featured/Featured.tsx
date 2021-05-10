@@ -17,6 +17,8 @@ export const Featured: React.FC<PropsType> = (props) => {
     let isFetching = useSelector(getIsFetching)
     let favouriteIds = useSelector(getFavouriteMovieId)
     
+    let initialMoviesLoading = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+
     useEffect(() => {
         document.title = "Featured"
         dispatch(getFeaturedMoviesInit(1))
@@ -31,10 +33,13 @@ export const Featured: React.FC<PropsType> = (props) => {
         <div className="featured">
             <h2 className="featured__title">Featured movies</h2>
             <div className="featured__movies">
-                {movies.map((el : any) => <Card idsFavouriteMovie={favouriteIds} el={el}/>)} 
-                <button disabled={isFetching} onClick={() => getPage()} className="movie more" >
+                
+                {!!movies.length ? movies.map((el : any) => <Card idsFavouriteMovie={favouriteIds} el={el}/>) : <div style={{display: "flex", flexWrap: "wrap"}}>
+                    {initialMoviesLoading.map(el => <div key={el} className="movie"></div>)}
+                </div>} 
+                {!!movies.length && <button disabled={isFetching} onClick={() => getPage()} className="movie more" >
                     <span>Load More</span>
-                </button>
+                </button>}
             </div>
         </div>
   )

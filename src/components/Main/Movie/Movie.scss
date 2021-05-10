@@ -117,6 +117,9 @@
             color: rgb(122, 140, 153);
             overflow: hidden;
             cursor: pointer;
+            .add{
+                display: none;
+            }
             svg{
                 margin: 0.7rem 0.5rem;
             }
@@ -152,5 +155,22 @@
         img{
             border-radius: 5px;
         }
+    }
+}
+
+.add-favorite{
+    background: rgb(255, 64, 64)!important;
+    color: #fff!important;
+    border: none !important;
+    box-shadow: none!important;
+    margin-right: 77px;
+    .added{
+        display: none!important;
+
+    }
+
+    .add{
+        display: block!important;
+
     }
 }
