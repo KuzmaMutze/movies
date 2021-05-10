@@ -1,11 +1,12 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { Loader } from "../../../common/loader";
 import { splitDate } from "../../../helpers/helpers";
 import { setIdMovieIdFavorite } from "../../../redux/Main/favorites-reducer";
 import { getMovieId } from "../../../redux/Main/movie-reducer";
 import { getFavouriteMovieId } from "../../../redux/selectors/favourite-selectors";
-import { getMovieSelector } from "../../../redux/selectors/movie-selectors";
+import { getIsFetching, getMovieSelector } from "../../../redux/selectors/movie-selectors";
 import './Movie.scss'
 
 type ParamType = {
@@ -19,6 +20,7 @@ export const Movie: React.FC = (props) => {
     
     let movie = useSelector(getMovieSelector)
     let favouriteIds = useSelector(getFavouriteMovieId)
+    let isFetching = useSelector(getIsFetching)
 
     let ids = favouriteIds.filter(el => el == Number(id))
     
@@ -36,9 +38,13 @@ export const Movie: React.FC = (props) => {
         window.scrollTo(0, 0);
     }, [])
 
+    useEffect(() => {
+        document.title = `Movie ⠿ "${movie.title}"`
+    }, [movie])
+
     return (
         <>
-            {movie && <div className="movie-wrapper">
+            {!isFetching ? <div className="movie-wrapper">
                 <div className="movie-wrapper__info">
                     <button onClick={history.goBack} className="btn-back">
                         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="2" fill="none"><path d="M9 19.07L1.93 12 9 4.93"></path><path d="M3 12h20"></path></g></svg>
@@ -111,9 +117,10 @@ export const Movie: React.FC = (props) => {
                     </div> */}
                 </div>
                 <div className="movie-wrapper__poster">
+                
                     <img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="poster" />
                 </div>
-            </div>}
+            </div> : <Loader></Loader>}
         </>
     )
 };
