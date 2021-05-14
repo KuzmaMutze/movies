@@ -1,0 +1,24 @@
+.about {
+    color: white;
+    width: 50%;
+    h1{
+        font-size: 5rem;
+        line-height: 5.5rem;
+        letter-spacing: 0.01em;
+        font-weight: 900;
+    }
+    
+    p{
+        margin: 1em 0px;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        letter-spacing: 0.01em
+    }
+    a{
+        color: white;
+    }
+    a:hover{
+        text-decoration: none;
+        color: rgb(255, 159, 28);
+    }
+}

@@ -150,9 +150,15 @@
         }
     }
     &__poster{
+        width: 400px;
+        height: 600px;
+        background: #1B2329;
+        border-radius: 5px;
         margin-top: 20px;
         margin-right: 50px;
         img{
+            width: 400px;
+            height: 600px;
             border-radius: 5px;
         }
     }
@@ -187,5 +193,5 @@
 }
 
 .no-poster{
-    padding: 60px!important;
+    padding: 60px;
 }

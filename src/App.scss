@@ -31,3 +31,38 @@ body{
   background-color: #303e49;
   border-radius: 3px;
 }
+*::selection{
+  background: #fff;
+  color: #000;
+}
+
+@media (max-width: 1200px) { 
+  .App{
+    width: 90%;
+    main{
+      .featured__movies{
+        justify-content: center;
+      }
+    }
+    h2{
+      font-size: 45px;
+    }
+  }
+}
+
+@media (max-width: 930px) {
+  .movie-wrapper{
+    flex-direction: column;
+    align-items: center;
+    &__info{
+      width: 100%!important;
+      .title{
+        font-size: 2rem!important;
+        line-height: 2.5rem;
+      }
+    }
+    &__poster{
+      margin-right: 0!important;
+    }
+  }
+}

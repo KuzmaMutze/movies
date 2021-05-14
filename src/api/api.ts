@@ -20,18 +20,7 @@ export const instance = axios.create({
     getMovieId (id: number) {
         return data(instance.get<ResponseMovieId>(`https://api.themoviedb.org/3/movie/${id}?api_key=${ApiKey}`))
     },
-    getMulti(search: string, page = 1) {
-        return data(instance.get<MultiResponsePage>(`https://api.themoviedb.org/3/search/multi?api_key=${ApiKey}&query=${search}&page=${page}`))
-    },
     getMovies(search: string, page = 1) {
         return data(instance.get<ResponsePageMoviesFeaturedType>(`https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&query=${search}&page=${page}`))
-    },
-    getTv(search: string, page = 1) {
-        return data(instance.get<ResponsePageMoviesFeaturedType>(`https://api.themoviedb.org/3/search/tv?api_key=${ApiKey}&query=${search}&page=${page}`))
-    },
-    getPeople(search: string, page = 1) {
-        return data(instance.get<ResponsePageMoviesFeaturedType>(`https://api.themoviedb.org/3/search/person?api_key=${ApiKey}&query=${search}&page=${page}`))
-    },
-
-
+    }
 }

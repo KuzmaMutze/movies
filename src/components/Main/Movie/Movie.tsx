@@ -117,8 +117,8 @@ export const Movie: React.FC = (props) => {
                     </div> */}
                 </div>
                 <div className="movie-wrapper__poster">
-                    {movie.poster_path || movie.backdrop_path ?
-                    <img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="poster" /> : <svg className="no-poster" viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round" width="48" height="48" xmlns="http://www.w3.org/2000/svg" ><g fill="none" stroke="currentColor" stroke-width="2"><path d="M24 14c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z"></path><path d="M29 46H19l-1-8h-6l4.411-16.763C16.758 19.919 17.95 19 19.313 19h9.375c1.363 0 2.554.919 2.901 2.237L36 38h-6l-1 8z"></path></g></svg>}
+                    {movie.poster_path ?
+                    <img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="poster" /> : <svg style={{padding: "160px"}} className="no-poster" viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round" width="48" height="48" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" stroke-width="2" fill="none" d="M2 2v44M46 2v44M10 2h28v44H10zM2 24h44M2 16h8M2 8h8M38 16h8M38 8h8M38 40h8M38 32h8M2 40h8M2 32h8"></path></svg>}
                 </div>
             </div> : <Loader></Loader>}
         </>

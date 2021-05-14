@@ -40,10 +40,24 @@
         .btn-trend{
             display: flex;
             align-self: center;
+            .active{
+                display: none;
+            }
+        }
+        .btn-trend-active{
+            .active{
+                display: block!important;
+            }
+            .no-active{
+                display: none;
+            }
         }
         .btn-favorite{
             display: flex;
             align-self: center;
+            .active{
+                display: none;
+            }
             svg{
                 margin-top: 3px;
             }

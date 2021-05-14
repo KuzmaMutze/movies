@@ -10,8 +10,7 @@ import { Featured } from "./Featured/Featured";
 import { Movie } from "./Movie/Movie";
 import { Favorites } from "./Favorites/Favorites";
 import { Movies } from "./Movies/Movies";
-import { TV } from "./TV/TV";
-import { People } from "./People/People";
+import { About } from "../About/About";
 
 export const Main: React.FC = (props) => {
 
@@ -25,9 +24,8 @@ export const Main: React.FC = (props) => {
           <Route exact path="/home" component={() => <Contant></Contant>}/>
           <Route exact path="/movies/:id" component={ () => <Movie></Movie> }/>
           <Route exact path="/movies" component={ () => <Movies></Movies> }/>
-          <Route exact path="/tv" component={ () => <TV></TV> }/>
-          <Route exact path="/people" component={ () => <People></People> }/>
           <Route exact path="/featured" component={ () => <Featured></Featured> }/>
+          <Route exact path="/about" component={ () => <About></About> }/>
         </Switch>
     </main>
   )

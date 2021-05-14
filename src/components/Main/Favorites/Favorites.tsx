@@ -19,7 +19,9 @@ export const Favorites: React.FC<PropsType> = (props) => {
 
     useEffect(() => {
         document.title = "Favorites"
+        
         favouriteIds.forEach(id => dispatch(setMovieIdFavorite(id)))
+        
         return () => {
             dispatch(removeMovie())
         }
